@@ -8,5 +8,39 @@
 
 .main {
   flex: 1;
-  padding: 2rem 0;
+  padding: 0;
+}
+
+.scrollTopButton {
+  position: fixed;
+  right: 32px;
+  bottom: 80px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #777777;
+  background: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  transition: $transition-base;
+
+  &:hover {
+    border-color: $bg-active-color;
+    background: $bg-active-color;
+
+    .scrollTopArrow {
+      border-color: white;
+    }
+  }
+}
+
+.scrollTopArrow {
+  width: 10px;
+  height: 10px;
+  border-left: 1px solid #777777;
+  border-top: 1px solid #777777;
+  transform: rotate(45deg) translateY(2px);
 }

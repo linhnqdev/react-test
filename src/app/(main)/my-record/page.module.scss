@@ -2,9 +2,9 @@
 @import "../../../styles/mixins";
 
 .container {
-  padding: 2rem 0;
+  padding: 56px 0 64px;
 
   @include respond-to(md) {
-    padding: 1.5rem 0;
+    padding: 24px 0;
   }
 }

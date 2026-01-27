@@ -2,28 +2,23 @@
 @import "../../../../styles/mixins";
 
 .page {
-  padding: 2.5rem 0 4rem;
-}
-
-.container {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  padding: 56px 0 64px;
 }
 
 .categories {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  margin-bottom: 3rem;
+  gap: 40px;
+  margin-bottom: 56px;
 
   @include respond-to(md) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 24px;
   }
 
   @include respond-to(sm) {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 }
 
@@ -31,7 +26,7 @@
   background: #2e2e2e;
   border: 0;
   cursor: pointer;
-  padding: 1.5rem 1rem;
+  padding: 24px;
   text-align: center;
   transition: $transition-base;
   min-height: 144px;
@@ -43,39 +38,41 @@
 }
 
 .active {
-  outline: 2px solid #ffcc21;
+  outline: 2px solid $bg-active-color;
   outline-offset: 2px;
 }
 
 .categoryTitle {
-  color: #ffcc21;
+  color: $bg-active-color;
+  font-size: 22px;
+  font-family: Inter;
   font-weight: 400;
-  letter-spacing: 0.15em;
-  line-height: 1.1;
+  line-height: 27px;
+  letter-spacing: 0.11px;
 }
 
 .titleLine {
   display: block;
-  font-size: 1.375rem;
 }
 
 .divider {
   width: 56px;
   height: 1px;
   background: rgba(255, 255, 255, 0.7);
-  margin: 0.75rem auto;
+  margin: 10px auto;
 }
 
 .categorySubtitle {
-  color: #fff;
-  font-size: 1.125rem;
+  color: white;
+  font-size: 18px;
   font-weight: 300;
+  line-height: 26px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem 1.5rem;
+  gap: 24px 8px;
 
   @include respond-to(md) {
     grid-template-columns: repeat(2, 1fr);
@@ -83,12 +80,14 @@
 
   @include respond-to(sm) {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
 
 .card {
   display: flex;
   flex-direction: column;
+  gap: 12px;
 }
 
 .imageWrap {
@@ -106,11 +105,14 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #ffcc21 0%, #ff963c 100%);
-  color: #fff;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 300;
+  background: $bg-active-color;
+  color: white;
+  font-size: 15px;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: 24px;
+  padding: 0 8px;
+  width: 144px;
 }
 
 .time {
@@ -118,28 +120,30 @@
 }
 
 .body {
-  padding: 0.5rem 0;
 }
 
 .title {
   color: $dark;
-  font-size: 0.9375rem;
+  font-size: 15px;
   font-weight: 300;
-  line-height: 1.6;
-  margin-bottom: 0.5rem;
+  line-height: 22px;
+  letter-spacing: 0.08px;
+  margin-bottom: 4px;
   @include truncate-multiline(2);
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 12px;
 }
 
 .tag {
-  color: #ff963c;
-  font-size: 0.75rem;
+  color: $active-color;
+  font-size: 12px;
   font-weight: 300;
+  line-height: 22px;
+  letter-spacing: 0.06px;
 }
 
 .loadMoreWrap {
@@ -149,7 +153,7 @@
 }
 
 .loadMoreBtn {
-  background: linear-gradient(135deg, #ffcc21 0%, #ff963c 100%);
+  background: linear-gradient(135deg, $bg-active-color 0%, $active-color 100%);
   color: #fff;
   border: 0;
   border-radius: $border-radius;

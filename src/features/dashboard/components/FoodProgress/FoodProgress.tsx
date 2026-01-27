@@ -10,10 +10,13 @@ export interface IFoodProgressProps {
 }
 
 export function FoodProgress({ date = "05/21", progress = 75, imageUrl }: IFoodProgressProps) {
-  // Calculate arc path for semi-circle progress
-  const radius = 50;
-  const circumference = Math.PI * radius;
-  const offset = circumference - (progress / 100) * circumference;
+  const SIZE = 181;
+  const STROKE = 4;
+  const cx = SIZE / 2;
+  const cy = SIZE / 2;
+  const r = (SIZE - STROKE) / 2;
+  const circumference = 2 * Math.PI * r; // full circle
+  const offset = circumference * (1 - (progress /  100));
 
   return (
     <div className={styles.container}>
@@ -32,23 +35,37 @@ export function FoodProgress({ date = "05/21", progress = 75, imageUrl }: IFoodP
           </div>
         )}
         <div className={styles.progressOverlay}>
-          <svg className={styles.progressSvg} viewBox="0 0 120 70">
-            {/* Background arc */}
-            <path
-              d="M 10 60 A 50 50 0 0 1 110 60"
+          <svg
+            className={styles.progressSvg}
+            width={SIZE}
+            height={SIZE}
+            viewBox={`0 0 ${SIZE} ${SIZE}`}
+          >
+            {/* Background */}
+            <circle
+              cx={cx}
+              cy={cy}
+              r={r}
               fill="none"
-              stroke="rgba(255, 255, 255, 0.3)"
-              strokeWidth="4"
+              stroke="rgba(255,255,255,0.3)"
+              strokeWidth={STROKE}
+              strokeDasharray={circumference}
+              strokeDashoffset={0}
+              transform={`rotate(-90 ${cx} ${cy})`}
             />
-            {/* Progress arc */}
-            <path
-              d="M 10 60 A 50 50 0 0 1 110 60"
+
+            {/* Progress */}
+            <circle
+              cx={cx}
+              cy={cy}
+              r={r}
               fill="none"
-              stroke="#ffffff"
-              strokeWidth="4"
+              stroke="#fff"
+              strokeWidth={STROKE}
+              strokeLinecap="round"
               strokeDasharray={circumference}
               strokeDashoffset={offset}
-              strokeLinecap="round"
+              transform={`rotate(-90 ${cx} ${cy})`}
             />
           </svg>
           <div className={styles.progressContent}>

@@ -2,31 +2,36 @@
 @import "../../../../styles/mixins";
 
 .container {
-  background: #2e2e2e;
-  border-radius: $border-radius-lg;
-  padding: 1.5rem;
+  background: #414141;
+  padding: 16px 24px;
   margin-bottom: 3rem;
 }
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 4px;
 }
 
 .title {
-  font-size: 0.9375rem;
+  color: white;
+  font-size: 15px;
+  font-family: Inter;
   font-weight: 400;
-  color: #fff;
+  line-height: 18px;
+  letter-spacing: 0.15px;
   margin: 0;
-  letter-spacing: 0.15em;
+  width: 96px;
 }
 
 .date {
-  font-size: 1.375rem;
+ color: white;
+  font-size: 22px;
+  font-family: Inter;
   font-weight: 400;
-  color: #fff;
+  line-height: 27px;
+  letter-spacing: 0.11px;
 }
 
 .scrollContainer {
@@ -56,14 +61,14 @@
 .list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem 1.5rem;
+  gap: 8px;
 }
 
 .entry {
   display: flex;
-  gap: 0.75rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #777777;
 }
 
 .bullet {
@@ -83,27 +88,32 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 0.25rem;
 }
 
 .name {
-  font-size: 0.9375rem;
+  color: white;
+  font-size: 15px;
   font-weight: 300;
-  color: #fff;
+  line-height: 22px;
+  letter-spacing: 0.08px;
   flex: 1;
   line-height: 1.4;
 }
 
 .duration {
-  font-size: 1.125rem;
+  color: $bg-active-color;
+  font-size: 18px;
+  font-family: Inter;
   font-weight: 400;
-  color: #ffd700;
-  margin-left: 1rem;
-  white-space: nowrap;
+  line-height: 22px;
+  letter-spacing: 0.09px;
 }
 
 .calories {
-  font-size: 0.9375rem;
+ color: $bg-active-color;
+  font-size: 15px;
+  font-family: Inter;
   font-weight: 400;
-  color: #ffd700;
+  line-height: 18px;
+  letter-spacing: 0.08px;
 }

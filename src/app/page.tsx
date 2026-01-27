@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 
 import { FoodProgress } from "@/features/dashboard/components/FoodProgress";
@@ -8,8 +7,6 @@ import { MealCategoryButtons } from "@/features/dashboard/components/MealCategor
 import { MealLogGrid } from "@/features/dashboard/components/MealLogGrid";
 import { TrendChart } from "@/features/dashboard/components/TrendChart";
 import { MainLayout } from "@/shared/components/layout/MainLayout";
-import { Button } from "@/shared/components/ui/Button";
-import { Card } from "@/shared/components/ui/Card";
 
 import styles from "./page.module.scss";
 

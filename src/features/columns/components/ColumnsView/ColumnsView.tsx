@@ -189,8 +189,8 @@ export function ColumnsView() {
   };
 
   return (
-    <div className={styles.page}>
-      <div className={styles.container}>
+    <div className="container">
+      <div className={styles.page}>
         <div className={styles.categories}>
           {CATEGORY_CARDS.map((card) => (
             <button
@@ -244,17 +244,19 @@ export function ColumnsView() {
           ))}
         </div>
 
-        <div className={styles.loadMoreWrap}>
-          <button
-            type="button"
-            className={styles.loadMoreBtn}
-            onClick={() => hasMore && setDisplayCount((p) => p + 8)}
-            disabled={!hasMore}
-            aria-disabled={!hasMore}
-          >
-            コラムをもっと見る
-          </button>
-        </div>
+        {hasMore && (
+          <div className={styles.loadMoreWrap}>
+            <button
+              type="button"
+              className={styles.loadMoreBtn}
+              onClick={() => hasMore && setDisplayCount((p) => p + 8)}
+              disabled={!hasMore}
+              aria-disabled={!hasMore}
+            >
+              コラムをもっと見る
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

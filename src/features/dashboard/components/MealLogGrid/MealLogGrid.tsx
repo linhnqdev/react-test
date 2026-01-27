@@ -64,47 +64,48 @@ export function MealLogGrid({ entries, filter, onLoadMore }: IMealLogGridProps) 
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.grid}>
-        {mealEntries.map((entry) => (
-          <div key={entry.id} className={styles.card}>
-            <div className={styles.imageWrapper}>
-              {entry.imageUrl ? (
-                <Image
-                  src={entry.imageUrl}
-                  alt={`${entry.mealType} on ${entry.date}`}
-                  fill
-                  className={styles.image}
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                />
-              ) : (
-                <div className={styles.placeholder}>
-                  <span>{entry.mealType}</span>
+    <div className="container">
+      <div className={styles.container}>
+        <div className={styles.grid}>
+          {mealEntries.map((entry) => (
+            <div key={entry.id} className={styles.card}>
+              <div className={styles.imageWrapper}>
+                {entry.imageUrl ? (
+                  <Image
+                    src={entry.imageUrl}
+                    alt={`${entry.mealType} on ${entry.date}`}
+                    fill
+                    className={styles.image}
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                  />
+                ) : (
+                  <div className={styles.placeholder}>
+                    <span>{entry.mealType}</span>
+                  </div>
+                )}
+                <div className={styles.overlay}>
+                  <span className={styles.overlayText}>
+                    {entry.date}.{entry.mealType}
+                  </span>
                 </div>
-              )}
-              <div className={styles.overlay}>
-                <span className={styles.overlayText}>
-                  {entry.date}.{entry.mealType}
-                </span>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      {hasMore && (
-        <div className={styles.loadMoreSection}>
-          <span className={styles.loadMoreLabel}>more record</span>
-          <button className={styles.loadMoreButton} onClick={handleLoadMore}>
-            記録をもっと見る
-          </button>
+          ))}
         </div>
-      )}
-      {showScrollTop && (
-        <button className={styles.scrollTopButton} onClick={scrollToTop} aria-label="Scroll to top">
-          <FiArrowUp />
-        </button>
-      )}
+
+        {hasMore && (
+          <div className={styles.loadMoreSection}>
+            <button className={styles.loadMoreButton} onClick={handleLoadMore}>
+              記録をもっと見る
+            </button>
+          </div>
+        )}
+        {showScrollTop && (
+          <button className={styles.scrollTopButton} onClick={scrollToTop} aria-label="Scroll to top">
+            <FiArrowUp />
+          </button>
+        )}
+      </div>
     </div>
   );
 }

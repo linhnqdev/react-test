@@ -7,11 +7,13 @@ import styles from "./page.module.scss";
 
 export default function MyRecordPage() {
   return (
-    <div className={styles.container}>
-      <OverviewCards />
-      <BodyRecordChart />
-      <ExerciseLog />
-      <DiaryGrid />
+    <div className="container">
+      <div className={styles.container}>
+        <OverviewCards />
+        <BodyRecordChart />
+        <ExerciseLog />
+        <DiaryGrid />
+      </div>
     </div>
   );
 }

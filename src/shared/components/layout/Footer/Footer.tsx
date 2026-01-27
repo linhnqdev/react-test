@@ -17,7 +17,6 @@ export function Footer() {
         <div className={styles.content}>
           {links.map((link, index) => (
             <span key={index}>
-              {index > 0 && <span className={styles.separator}>|</span>}
               <Link href={link.href} className={styles.link}>
                 {link.label}
               </Link>

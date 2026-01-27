@@ -1,10 +1,28 @@
-// Font Face Declaration
+// Font Face Declarations
 @font-face {
   font-family: "Hiragino Kaku Gothic Pro";
   src: url("/fonts/Hiragino Kaku Gothic Pro W3.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
   font-display: swap; // Hiển thị fallback font ngay, swap khi font load xong
+}
+
+// Inter variable font (normal)
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+// Inter variable font (italic)
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
 }
 
 // Typography Styles
