@@ -1,0 +1,184 @@
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
+
+.page {
+  padding: 2.5rem 0 4rem;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @include respond-to(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.categoryCard {
+  background: #2e2e2e;
+  border: 0;
+  cursor: pointer;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: $transition-base;
+  min-height: 144px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $box-shadow;
+  }
+}
+
+.active {
+  outline: 2px solid #ffcc21;
+  outline-offset: 2px;
+}
+
+.categoryTitle {
+  color: #ffcc21;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  line-height: 1.1;
+}
+
+.titleLine {
+  display: block;
+  font-size: 1.375rem;
+}
+
+.divider {
+  width: 56px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.7);
+  margin: 0.75rem auto;
+}
+
+.categorySubtitle {
+  color: #fff;
+  font-size: 1.125rem;
+  font-weight: 300;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem 1.5rem;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.dateLabel {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #ffcc21 0%, #ff963c 100%);
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+
+.time {
+  margin-left: 0.5rem;
+}
+
+.body {
+  padding: 0.5rem 0;
+}
+
+.title {
+  color: $dark;
+  font-size: 0.9375rem;
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  @include truncate-multiline(2);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  color: #ff963c;
+  font-size: 0.75rem;
+  font-weight: 300;
+}
+
+.loadMoreWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.loadMoreBtn {
+  background: linear-gradient(135deg, #ffcc21 0%, #ff963c 100%);
+  color: #fff;
+  border: 0;
+  border-radius: $border-radius;
+  padding: 1.25rem 4rem;
+  font-size: 1.125rem;
+  font-weight: 300;
+  cursor: pointer;
+  transition: $transition-base;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.25);
+
+  &:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.03);
+    box-shadow: 0 6px 14px rgba(255, 107, 53, 0.28);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    box-shadow: none;
+    filter: none;
+  }
+
+  &:disabled:hover {
+    transform: none;
+  }
+}
+

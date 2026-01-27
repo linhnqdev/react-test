@@ -1,0 +1,25 @@
+// Custom Bootstrap Overrides
+// Import after variables and mixins
+
+// Override Bootstrap components here
+.btn {
+  font-weight: 500;
+  transition: $transition-base;
+}
+
+.card {
+  border: none;
+  box-shadow: $box-shadow;
+  transition: $transition-base;
+
+  &:hover {
+    box-shadow: $box-shadow-lg;
+  }
+}
+
+.form-control {
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+  }
+}

@@ -1,0 +1,67 @@
+// Custom Utility Classes
+
+.text-truncate-2 {
+  @include truncate-multiline(2);
+}
+
+.text-truncate-3 {
+  @include truncate-multiline(3);
+}
+
+.flex-center {
+  @include flex-center;
+}
+
+.flex-between {
+  @include flex-between;
+}
+
+// Spacing Utilities
+@each $size, $value in $spacers {
+  .m-#{$size} {
+    margin: $value !important;
+  }
+  .mt-#{$size} {
+    margin-top: $value !important;
+  }
+  .mb-#{$size} {
+    margin-bottom: $value !important;
+  }
+  .ml-#{$size} {
+    margin-left: $value !important;
+  }
+  .mr-#{$size} {
+    margin-right: $value !important;
+  }
+  .mx-#{$size} {
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+  .my-#{$size} {
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+  .p-#{$size} {
+    padding: $value !important;
+  }
+  .pt-#{$size} {
+    padding-top: $value !important;
+  }
+  .pb-#{$size} {
+    padding-bottom: $value !important;
+  }
+  .pl-#{$size} {
+    padding-left: $value !important;
+  }
+  .pr-#{$size} {
+    padding-right: $value !important;
+  }
+  .px-#{$size} {
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+  .py-#{$size} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+}

@@ -1,0 +1,1 @@
+export { BodyRecordChart } from "./BodyRecordChart";

@@ -1,0 +1,34 @@
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
+
+.footer {
+  background: #2e2e2e;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 2rem 0;
+  margin-top: 4rem;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: $transition-base;
+  padding: 0 0.5rem;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.separator {
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0 0.25rem;
+}
