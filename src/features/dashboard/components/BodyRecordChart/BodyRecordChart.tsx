@@ -24,7 +24,7 @@ export function BodyRecordChart() {
         <span className={styles.date}>{currentDate}</span>
       </div>
       <div className={styles.chartContainer}>
-        <TrendChart />
+        <TrendChart backgroundColor="#414141" />
       </div>
       <div className={styles.filters}>
         {periods.map((period) => (

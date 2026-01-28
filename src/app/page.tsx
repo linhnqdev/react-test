@@ -15,19 +15,21 @@ export default function Home() {
 
   return (
     <MainLayout>
-      <div className={styles.topPage}>
-        <div className={styles.topPageBanner}>
-          <FoodProgress date="05/21" progress={75} imageUrl="/images/food-progress.jpg" />
+      <div className={styles.container}>
+        <div className={styles.topPage}>
+          <div className={styles.topPageBanner}>
+            <FoodProgress date="05/21" progress={75} imageUrl="/images/food-progress.jpg" />
+          </div>
+          <div className={styles.topPageChart}>
+            <TrendChart />
+          </div>
         </div>
-        <div className={styles.topPageChart}>
-          <TrendChart />
+        <div className={styles.mealCategories}>
+          <MealCategoryButtons selected={selectedMealType} onSelect={setSelectedMealType} />
         </div>
-      </div>
-      <div className={styles.mealCategories}>
-        <MealCategoryButtons selected={selectedMealType} onSelect={setSelectedMealType} />
-      </div>
-      <div className={styles.mealLogSection}>
-        <MealLogGrid filter={selectedMealType} />
+        <div className={styles.mealLogSection}>
+          <MealLogGrid filter={selectedMealType} />
+        </div>
       </div>
     </MainLayout>
   );

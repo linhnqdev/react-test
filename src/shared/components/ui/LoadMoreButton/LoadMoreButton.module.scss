@@ -1,0 +1,36 @@
+@import "../../../../styles/variables";
+@import "../../../../styles/mixins";
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 3rem;
+  border-radius: $border-radius;
+  border: none;
+  background: linear-gradient(135deg, $bg-active-color 0%, $active-color 100%);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 300;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+  transition: $transition-base;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+    filter: brightness(1.05);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+}
+

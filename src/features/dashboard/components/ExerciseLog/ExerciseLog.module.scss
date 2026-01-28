@@ -35,9 +35,9 @@
 }
 
 .scrollContainer {
-  max-height: 200px;
+  max-height: 192px;
   overflow-y: auto;
-  padding-right: 0.5rem;
+  padding-right: 24px;
 
   // Custom scrollbar
   &::-webkit-scrollbar {

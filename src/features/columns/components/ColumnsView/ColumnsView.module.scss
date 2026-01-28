@@ -73,6 +73,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px 8px;
+  margin-bottom: 24px;
 
   @include respond-to(md) {
     grid-template-columns: repeat(2, 1fr);
@@ -144,12 +145,6 @@
   font-weight: 300;
   line-height: 22px;
   letter-spacing: 0.06px;
-}
-
-.loadMoreWrap {
-  display: flex;
-  justify-content: center;
-  margin-top: 2.5rem;
 }
 
 .loadMoreBtn {

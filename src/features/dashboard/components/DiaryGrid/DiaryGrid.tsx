@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { LoadMoreButton } from "@/shared/components/ui/LoadMoreButton";
 import styles from "./DiaryGrid.module.scss";
 
 interface IDiaryEntry {
@@ -116,10 +117,11 @@ export function DiaryGrid() {
         ))}
       </div>
       {hasMore && (
-        <div className={styles.loadMoreContainer}>
-          <button className={styles.loadMoreButton} onClick={handleLoadMore}>
-            自分の日記をもっと見る
-          </button>
+        <div className="text-center">
+          <LoadMoreButton
+            label="自分の日記をもっと見る"
+            onClick={handleLoadMore}
+          />
         </div>
       )}
     </div>

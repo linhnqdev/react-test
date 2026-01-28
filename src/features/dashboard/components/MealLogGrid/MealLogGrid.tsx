@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FiArrowUp } from "react-icons/fi";
+
+import { LoadMoreButton } from "@/shared/components/ui/LoadMoreButton";
 import styles from "./MealLogGrid.module.scss";
 
 export interface IMealEntry {
@@ -94,10 +96,11 @@ export function MealLogGrid({ entries, filter, onLoadMore }: IMealLogGridProps) 
         </div>
 
         {hasMore && (
-          <div className={styles.loadMoreSection}>
-            <button className={styles.loadMoreButton} onClick={handleLoadMore}>
-              記録をもっと見る
-            </button>
+          <div className="text-center">
+            <LoadMoreButton
+              label="記録をもっと見る"
+              onClick={handleLoadMore}
+            />
           </div>
         )}
         {showScrollTop && (

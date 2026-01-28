@@ -1,6 +1,10 @@
 @import "../styles/variables";
 @import "../styles/mixins";
 
+.container {
+  padding-bottom: 64px;
+}
+
 .topPage {
   display: grid;
   grid-template-columns: 40% 1fr;

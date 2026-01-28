@@ -47,7 +47,7 @@ export function FoodProgress({ date = "05/21", progress = 75, imageUrl }: IFoodP
               cy={cy}
               r={r}
               fill="none"
-              stroke="rgba(255,255,255,0.3)"
+              stroke="none"
               strokeWidth={STROKE}
               strokeDasharray={circumference}
               strokeDashoffset={0}

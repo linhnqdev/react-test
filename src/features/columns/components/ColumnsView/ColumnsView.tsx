@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 
+import { LoadMoreButton } from "@/shared/components/ui/LoadMoreButton";
+
 import styles from "./ColumnsView.module.scss";
 
 type ColumnCategory = "recommended" | "diet" | "beauty" | "health";
@@ -245,16 +247,14 @@ export function ColumnsView() {
         </div>
 
         {hasMore && (
-          <div className={styles.loadMoreWrap}>
-            <button
-              type="button"
+          <div className="text-center">
+            <LoadMoreButton
+              label="コラムをもっと見る"
               className={styles.loadMoreBtn}
               onClick={() => hasMore && setDisplayCount((p) => p + 8)}
               disabled={!hasMore}
               aria-disabled={!hasMore}
-            >
-              コラムをもっと見る
-            </button>
+            />
           </div>
         )}
       </div>

@@ -6,6 +6,7 @@ import styles from "./TrendChart.module.scss";
 
 export interface ITrendChartProps {
   data?: Array<{ month: string; value1: number; value2: number }>;
+  backgroundColor?: string;
 }
 
 interface IHoverPoint {
@@ -14,7 +15,7 @@ interface IHoverPoint {
   value: number;
 }
 
-export function TrendChart({ data }: ITrendChartProps) {
+export function TrendChart({ data, backgroundColor = "#2e2e2e" }: ITrendChartProps) {
   // Mock data for the chart (shape roughly follows design)
   const chartData = data || [
     { month: "6月", value1: 24, value2: 24 },
@@ -64,7 +65,7 @@ export function TrendChart({ data }: ITrendChartProps) {
   );
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ backgroundColor }}>
       <svg viewBox="0 0 100 100" className={styles.chart} preserveAspectRatio="none">
         {/* Vertical grid lines */}
         {xPositions.map((x) => (
@@ -100,8 +101,8 @@ export function TrendChart({ data }: ITrendChartProps) {
               cy={y}
               r="1"
               fill="#FFCC21"
-              stroke="#2E2E2E"
-              strokeWidth="0.5"
+              stroke="none"
+              strokeWidth="0"
               onMouseEnter={() => setHover({ x, y, value })}
               onMouseLeave={() => setHover(null)}
             />
@@ -129,8 +130,8 @@ export function TrendChart({ data }: ITrendChartProps) {
               cy={y}
               r="1"
               fill="#8FE9D0"
-              stroke="#2E2E2E"
-              strokeWidth="0.5"
+              stroke="none"
+              strokeWidth="0"
               onMouseEnter={() => setHover({ x, y, value })}
               onMouseLeave={() => setHover(null)}
             />
@@ -140,16 +141,33 @@ export function TrendChart({ data }: ITrendChartProps) {
         {/* Month labels inside SVG */}
         {chartData.map((item, index) => {
           const x = xPositions[index];
+          // Tách số và "月" từ month string (ví dụ: "6月" -> "6" và "月")
+          const monthMatch = item.month.match(/^(\d+)(月)$/);
+          const monthNumber = monthMatch ? monthMatch[1] : "";
+          const monthChar = monthMatch ? monthMatch[2] : item.month;
+
           return (
-            <text
-              key={item.month}
-              x={x}
-              y={98}
-              textAnchor="middle"
-              className={styles.monthLabel}
-            >
-              {item.month}
-            </text>
+            <g key={item.month}>
+              {/* Số tháng - font size 12px */}
+              <text
+                x={x}
+                y={98}
+                textAnchor="middle"
+                className={styles.monthNumber}
+              >
+                {monthNumber}
+              </text>
+              {/* Chữ "月" - font size 8px, offset sang phải */}
+              <text
+                x={x}
+                y={98}
+                textAnchor="middle"
+                className={styles.monthChar}
+                dx={monthNumber && parseInt(monthNumber) > 9 ? "3.2px" : "2.4px"}
+              >
+                {monthChar}
+              </text>
+            </g>
           );
         })}
 
