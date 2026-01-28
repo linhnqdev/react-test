@@ -1,7 +1,7 @@
-import { OverviewCards } from "@/features/dashboard/components/OverviewCards";
-import { BodyRecordChart } from "@/features/dashboard/components/BodyRecordChart";
-import { ExerciseLog } from "@/features/dashboard/components/ExerciseLog";
-import { DiaryGrid } from "@/features/dashboard/components/DiaryGrid";
+import { OverviewCards } from "@/features/my-record/components/OverviewCards";
+import { BodyRecordChart } from "@/features/my-record/components/BodyRecordChart";
+import { ExerciseLog } from "@/features/my-record/components/ExerciseLog";
+import { DiaryGrid } from "@/features/my-record/components/DiaryGrid";
 
 import styles from "./page.module.scss";
 

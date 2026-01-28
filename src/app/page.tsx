@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 
-import { FoodProgress } from "@/features/dashboard/components/FoodProgress";
-import { MealCategoryButtons } from "@/features/dashboard/components/MealCategoryButtons";
-import { MealLogGrid } from "@/features/dashboard/components/MealLogGrid";
-import { TrendChart } from "@/features/dashboard/components/TrendChart";
+import { FoodProgress } from "@/features/home/components/FoodProgress";
+import { MealCategoryButtons } from "@/features/home/components/MealCategoryButtons";
+import { MealLogGrid } from "@/features/home/components/MealLogGrid";
+import { TrendChart } from "@/features/home/components/TrendChart";
 import { MainLayout } from "@/shared/components/layout/MainLayout";
 
 import styles from "./page.module.scss";

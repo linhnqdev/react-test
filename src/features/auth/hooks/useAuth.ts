@@ -24,7 +24,7 @@ export function useAuth() {
       setLoginError(null);
       const response = await authApi.login(data);
       setAuth(response.user, response.token, response.refreshToken);
-      router.push("/dashboard");
+      router.push("/my-record");
     } catch (error) {
       const err = error instanceof Error ? error : new Error("Login failed");
       setLoginError(err);
@@ -41,7 +41,7 @@ export function useAuth() {
       setRegisterError(null);
       const response = await authApi.register(data);
       setAuth(response.user, response.token, response.refreshToken);
-      router.push("/dashboard");
+      router.push("/my-record");
     } catch (error) {
       const err = error instanceof Error ? error : new Error("Registration failed");
       setRegisterError(err);

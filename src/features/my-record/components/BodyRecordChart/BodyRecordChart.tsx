@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TrendChart } from "../TrendChart";
+import { TrendChart } from "../../../home/components/TrendChart";
 import styles from "./BodyRecordChart.module.scss";
 
 type TimePeriod = "day" | "week" | "month" | "year";
