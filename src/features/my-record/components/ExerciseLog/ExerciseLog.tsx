@@ -1,34 +1,51 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
+import { myRecordApi } from "@/features/my-record/api";
+import type { IExerciseEntry } from "@/features/my-record/types";
+import { Loading } from "@/shared/components/ui/Loading";
+
 import styles from "./ExerciseLog.module.scss";
 
-interface IExerciseEntry {
-  id: string;
-  name: string;
-  calories: number;
-  duration: number;
-}
-
-const exercises: IExerciseEntry[] = [
-  { id: "1", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "2", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "3", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "4", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "5", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "6", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "7", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "8", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "9", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "10", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "11", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "12", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "13", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "14", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-  { id: "15", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
-];
+const FALLBACK_EXERCISES: IExerciseEntry[] = [];
 
 export function ExerciseLog() {
-  const currentDate = "2021.05.21";
+  const [entries, setEntries] = useState<IExerciseEntry[]>(FALLBACK_EXERCISES);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    (async () => {
+      try {
+        const data = await myRecordApi.getExercises();
+        if (isMounted && data.length > 0) {
+          setEntries(data);
+        }
+      } catch (error) {
+        if (process.env.NODE_ENV === "development") {
+          // eslint-disable-next-line no-console
+          console.error("Failed to load exercise mock data", error);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    })();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const today = new Date();
+  const formattedToday = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, "0")}.${String(
+    today.getDate()
+  ).padStart(2, "0")}`;
+
+  const currentDate = formattedToday;
 
   return (
     <div className={styles.container}>
@@ -37,20 +54,26 @@ export function ExerciseLog() {
         <span className={styles.date}>{currentDate}</span>
       </div>
       <div className={styles.scrollContainer}>
-        <div className={styles.list}>
-          {exercises.map((exercise) => (
-            <div key={exercise.id} className={styles.entry}>
-              <div className={styles.bullet} />
-              <div className={styles.content}>
-                <div className={styles.nameRow}>
-                  <span className={styles.name}>{exercise.name}</span>
-                  <span className={styles.duration}>{exercise.duration} min</span>
+        {isLoading ? (
+          <div className={styles.loadingWrapper}>
+            <Loading text="Loading exercises..." />
+          </div>
+        ) : (
+          <div className={styles.list}>
+            {entries.map((exercise) => (
+              <div key={exercise.id} className={styles.entry}>
+                <div className={styles.bullet} />
+                <div className={styles.content}>
+                  <div className={styles.nameRow}>
+                    <span className={styles.name}>{exercise.name}</span>
+                    <span className={styles.duration}>{exercise.duration} min</span>
+                  </div>
+                  <div className={styles.calories}>{exercise.calories}kcal</div>
                 </div>
-                <div className={styles.calories}>{exercise.calories}kcal</div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

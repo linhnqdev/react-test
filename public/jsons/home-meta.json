@@ -1,0 +1,7 @@
+{
+  "title": "Home | React Test App",
+  "description": "Demo health dashboard with food progress, trend chart and meal logs built with Next.js and React.",
+  "heading": "React Test App Demo",
+  "keywords": ["next.js", "react", "health dashboard", "meal log", "trend chart"],
+  "ogImage": "/images/meal-bg.svg"
+}

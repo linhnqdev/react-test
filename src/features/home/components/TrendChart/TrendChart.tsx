@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+
+import { useTrendChart } from "@/features/home/hooks/useTrendChart";
+import { Loading } from "@/shared/components/ui/Loading";
+
 import styles from "./TrendChart.module.scss";
 
 export interface ITrendChartProps {
@@ -24,15 +28,20 @@ export function TrendChart({
   data,
   height = 292,
   backgroundColor = "#2e2e2e",
-}: ITrendChartProps) {
+}: Readonly<ITrendChartProps>) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState<Size>({ width: 0, height });
   const [hover, setHover] = useState<HoverPoint | null>(null);
+  const { data: remoteData, isLoading, error, reload } = useTrendChart(
+    data as Array<{ month: string; value1: number; value2: number }> | undefined
+  );
 
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const observer = new ResizeObserver(([entry]) => {
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (!entry) return;
       setSize({
         width: entry.contentRect.width,
         height,
@@ -43,24 +52,15 @@ export function TrendChart({
     return () => observer.disconnect();
   }, [height]);
 
-  const chartData = data || [
-    { month: "6月", value1: 24, value2: 24 },
-    { month: "7月", value1: 25, value2: 26 },
-    { month: "8月", value1: 24, value2: 25 },
-    { month: "9月", value1: 24, value2: 25 },
-    { month: "10月", value1: 23, value2: 24 },
-    { month: "11月", value1: 25, value2: 26 },
-    { month: "12月", value1: 26, value2: 27 },
-    { month: "1月", value1: 27, value2: 28 },
-    { month: "2月", value1: 26, value2: 27 },
-    { month: "3月", value1: 26, value2: 27 },
-    { month: "4月", value1: 25, value2: 26 },
-    { month: "5月", value1: 27, value2: 28 },
-  ];
+  const chartData = (data && data.length > 0 ? data : remoteData) as Array<{
+    month: string;
+    value1: number;
+    value2: number;
+  }>;
 
-  const values = chartData.flatMap(d => [d.value1, d.value2]);
-  const max = Math.max(...values);
-  const min = Math.min(...values);
+  const values = chartData.flatMap((d) => [d.value1, d.value2]);
+  const max = values.length ? Math.max(...values) : 1;
+  const min = values.length ? Math.min(...values) : 0;
   const padding = (max - min) * 0.1;
 
   const VIEW_WIDTH = size.width;
@@ -72,7 +72,7 @@ export function TrendChart({
   const CHART_WIDTH =
     VIEW_WIDTH - PADDING_LEFT - PADDING_RIGHT;
 
-  const CHART_TOP = 20;
+  const CHART_TOP = 0;
   const CHART_BOTTOM = VIEW_HEIGHT - 28;
   const CHART_HEIGHT = CHART_BOTTOM - CHART_TOP;
 
@@ -99,6 +99,20 @@ export function TrendChart({
       className={styles.container}
       style={{ height, backgroundColor }}
     >
+      {isLoading && <Loading text="Loading..." />}
+      {error && (
+        <div className={styles.error} role="alert">
+          <div>{error}</div>
+          <button
+            type="button"
+            className={styles.retry}
+            onClick={reload}
+          >
+            Retry
+          </button>
+        </div>
+      )}
+
       {VIEW_WIDTH > 0 && (
         <svg
           viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`}
@@ -106,11 +120,11 @@ export function TrendChart({
           preserveAspectRatio="none"
         >
           {/* GRID */}
-          {chartData.map((_, i) => {
+          {chartData.map((d, i) => {
             const x = getX(i);
             return (
               <line
-                key={i}
+                key={`grid-${d.month}`}
                 x1={x}
                 x2={x}
                 y1={CHART_TOP}
@@ -136,7 +150,7 @@ export function TrendChart({
             const y = getY(d.value1);
             return (
               <circle
-                key={`c1-${i}`}
+                key={`c1-${d.month}`}
                 cx={x}
                 cy={y}
                 r={4}
@@ -164,7 +178,7 @@ export function TrendChart({
             const y = getY(d.value2);
             return (
               <circle
-                key={`c2-${i}`}
+                key={`c2-${d.month}`}
                 cx={x}
                 cy={y}
                 r={4}

@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { FiArrowUp } from "react-icons/fi";
 
+import { useMealEntries } from "@/features/home/hooks/useMealEntries";
 import { LoadMoreButton } from "@/shared/components/ui/LoadMoreButton";
+import { Loading } from "@/shared/components/ui/Loading";
 import styles from "./MealLogGrid.module.scss";
 
 export interface IMealEntry {
@@ -20,27 +21,29 @@ export interface IMealLogGridProps {
   onLoadMore?: () => void;
 }
 
-export function MealLogGrid({ entries, filter, onLoadMore }: IMealLogGridProps) {
+export function MealLogGrid({ entries, filter, onLoadMore }: Readonly<IMealLogGridProps>) {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [displayCount, setDisplayCount] = useState(8);
+  const { entries: remoteEntries, isLoading, error, reload } = useMealEntries();
 
-  // Mock data
+  useEffect(() => {
+    const onScroll = () => {
+      setShowScrollTop(window.scrollY > 200);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const allMealEntries: IMealEntry[] =
-    entries ||
-    [
-      { id: "1", date: "05.21", mealType: "Morning", imageUrl: "/images/foods/d01.jpg" },
-      { id: "2", date: "05.21", mealType: "Lunch", imageUrl: "/images/foods/d02.jpg" },
-      { id: "3", date: "05.21", mealType: "Dinner", imageUrl: "/images/foods/l01.jpg" },
-      { id: "4", date: "05.21", mealType: "Snack", imageUrl: "/images/foods/l02.jpg" },
-      { id: "5", date: "05.20", mealType: "Morning", imageUrl: "/images/foods/l02.jpg" },
-      { id: "6", date: "05.20", mealType: "Lunch", imageUrl: "/images/foods/l03.jpg" },
-      { id: "7", date: "05.20", mealType: "Dinner", imageUrl: "/images/foods/m01.jpg" },
-      { id: "8", date: "05.20", mealType: "Snack", imageUrl: "/images/foods/s01.jpg" },
-      { id: "9", date: "05.19", mealType: "Morning", imageUrl: "/images/foods/d01.jpg" },
-      { id: "10", date: "05.19", mealType: "Lunch", imageUrl: "/images/foods/d02.jpg" },
-      { id: "11", date: "05.19", mealType: "Dinner", imageUrl: "/images/foods/l01.jpg" },
-      { id: "12", date: "05.19", mealType: "Snack", imageUrl: "/images/foods/l02.jpg" },
-    ];
+    entries && entries.length > 0
+      ? entries
+      : remoteEntries.map((x) => ({
+          id: x.id,
+          date: x.date,
+          mealType: x.mealType,
+          imageUrl: x.imageUrl,
+        }));
 
   // Filter entries
   const filteredEntries = filter
@@ -68,6 +71,17 @@ export function MealLogGrid({ entries, filter, onLoadMore }: IMealLogGridProps) 
   return (
     <div className="container">
       <div className={styles.container}>
+        {isLoading && <Loading text="Loading..." />}
+        {error && (
+          <div className="text-center py-4" role="alert">
+            <p className="mb-3">{error}</p>
+            <LoadMoreButton
+              label="Retry"
+              onClick={reload}
+            />
+          </div>
+        )}
+
         <div className={styles.grid}>
           {mealEntries.map((entry) => (
             <div key={entry.id} className={styles.card}>
@@ -102,11 +116,6 @@ export function MealLogGrid({ entries, filter, onLoadMore }: IMealLogGridProps) 
               onClick={handleLoadMore}
             />
           </div>
-        )}
-        {showScrollTop && (
-          <button className={styles.scrollTopButton} onClick={scrollToTop} aria-label="Scroll to top">
-            <FiArrowUp />
-          </button>
         )}
       </div>
     </div>

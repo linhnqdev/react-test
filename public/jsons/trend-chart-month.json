@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "month": "2月", "value1": 26, "value2": 27 },
+    { "month": "3月", "value1": 26, "value2": 27 },
+    { "month": "4月", "value1": 25, "value2": 26 },
+    { "month": "5月", "value1": 27, "value2": 28 }
+  ]
+}

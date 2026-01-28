@@ -1,0 +1,15 @@
+{
+  "items": [
+    { "id": "1", "date": "05.21", "mealType": "Morning", "imageUrl": "/images/foods/d01.jpg" },
+    { "id": "2", "date": "05.21", "mealType": "Lunch", "imageUrl": "/images/foods/d02.jpg" },
+    { "id": "3", "date": "05.21", "mealType": "Dinner", "imageUrl": "/images/foods/l01.jpg" },
+    { "id": "4", "date": "05.21", "mealType": "Snack", "imageUrl": "/images/foods/l02.jpg" },
+    { "id": "5", "date": "05.20", "mealType": "Morning", "imageUrl": "/images/foods/l02.jpg" },
+    { "id": "6", "date": "05.20", "mealType": "Lunch", "imageUrl": "/images/foods/l03.jpg" },
+    { "id": "7", "date": "05.20", "mealType": "Dinner", "imageUrl": "/images/foods/m01.jpg" },
+    { "id": "8", "date": "05.20", "mealType": "Snack", "imageUrl": "/images/foods/s01.jpg" },
+    { "id": "9", "date": "05.19", "mealType": "Morning", "imageUrl": "/images/foods/d01.jpg" },
+    { "id": "10", "date": "05.19", "mealType": "Lunch", "imageUrl": "/images/foods/d02.jpg" },
+    { "id": "11", "date": "05.19", "mealType": "Dinner", "imageUrl": "/images/foods/l01.jpg" }
+  ]
+}

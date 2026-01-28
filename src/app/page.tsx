@@ -1,21 +1,36 @@
-"use client";
-
-import { useState } from "react";
+import type { Metadata } from "next";
 
 import { FoodProgress } from "@/features/home/components/FoodProgress";
-import { MealCategoryButtons } from "@/features/home/components/MealCategoryButtons";
-import { MealLogGrid } from "@/features/home/components/MealLogGrid";
+import { HomeMealsSection } from "@/features/home/components/HomeMealsSection";
 import { TrendChart } from "@/features/home/components/TrendChart";
+import { getHomeMeta } from "@/features/home/server";
 import { MainLayout } from "@/shared/components/layout/MainLayout";
 
 import styles from "./page.module.scss";
 
-export default function Home() {
-  const [selectedMealType, setSelectedMealType] = useState<"morning" | "lunch" | "dinner" | "snack" | null>(null);
+export async function generateMetadata(): Promise<Metadata> {
+  const meta = await getHomeMeta();
 
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      images: meta.ogImage ? [{ url: meta.ogImage }] : undefined,
+    },
+  };
+}
+
+export default async function Home() {
+  const meta = await getHomeMeta();
   return (
     <MainLayout>
       <div className={styles.container}>
+        <h1 className="d-none">
+          {meta.heading ?? meta.title}
+        </h1>
         <div className={styles.topPage}>
           <div className={styles.topPageBanner}>
             <FoodProgress date="05/21" progress={75} imageUrl="/images/food-progress.jpg" />
@@ -24,12 +39,7 @@ export default function Home() {
             <TrendChart />
           </div>
         </div>
-        <div className={styles.mealCategories}>
-          <MealCategoryButtons selected={selectedMealType} onSelect={setSelectedMealType} />
-        </div>
-        <div className={styles.mealLogSection}>
-          <MealLogGrid filter={selectedMealType} />
-        </div>
+        <HomeMealsSection />
       </div>
     </MainLayout>
   );

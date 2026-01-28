@@ -1,0 +1,16 @@
+{
+  "items": [
+    { "month": "6月", "value1": 24, "value2": 24 },
+    { "month": "7月", "value1": 25, "value2": 26 },
+    { "month": "8月", "value1": 24, "value2": 25 },
+    { "month": "9月", "value1": 24, "value2": 25 },
+    { "month": "10月", "value1": 23, "value2": 24 },
+    { "month": "11月", "value1": 25, "value2": 26 },
+    { "month": "12月", "value1": 26, "value2": 27 },
+    { "month": "1月", "value1": 27, "value2": 28 },
+    { "month": "2月", "value1": 26, "value2": 27 },
+    { "month": "3月", "value1": 26, "value2": 27 },
+    { "month": "4月", "value1": 25, "value2": 26 },
+    { "month": "5月", "value1": 27, "value2": 28 }
+  ]
+}

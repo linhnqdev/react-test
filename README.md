@@ -7,11 +7,13 @@ This is a complete Next.js base project built with modern technologies and libra
 ## 🔧 System Requirements
 
 ### Node.js
+
 - **Minimum version**: Node.js >= 18.17.0
 - **Recommended version**: Node.js 20.x LTS (Long Term Support)
 - **Reason**: Next.js 15 and React 19 require Node.js 18.17.0 or higher to ensure compatibility and optimal performance.
 
 ### Package Manager
+
 - **npm**: >= 9.x
 - **yarn**: >= 1.22.x
 - **pnpm**: >= 8.x (recommended for better performance)
@@ -27,6 +29,7 @@ If your version is lower than 18.17.0, please update Node.js:
 #### How to install/upgrade Node.js
 
 **Option 1: Download from the official website (recommended)**
+
 1. Go to [nodejs.org](https://nodejs.org/)
 2. Download the LTS version (20.x)
 3. Install following the instructions
@@ -34,6 +37,7 @@ If your version is lower than 18.17.0, please update Node.js:
 **Option 2: Use nvm (Node Version Manager) – recommended for developers**
 
 **Windows:**
+
 ```bash
 # Download nvm-windows from: https://github.com/coreybutler/nvm-windows/releases
 # After installation:
@@ -42,6 +46,7 @@ nvm use 20.11.0
 ```
 
 **macOS/Linux:**
+
 ```bash
 # Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
@@ -64,16 +69,19 @@ cd React-test
 ### 2. Install dependencies
 
 **Using npm:**
+
 ```bash
 npm install
 ```
 
 **Using yarn:**
+
 ```bash
 yarn install
 ```
 
 **Using pnpm (recommended):**
+
 ```bash
 pnpm install
 ```
@@ -127,11 +135,13 @@ yarn dev
 pnpm dev
 ```
 
-**Turbo Mode notes**: 
+**Turbo Mode notes**:
+
 - Turbo mode only works when the SWC native module loads correctly.
 - If you get SWC errors (WASM fallback), Turbo will not work.
 - The default `dev` script does not use Turbo to avoid errors.
 - If the SWC native module works, you can use:
+
 ```bash
 npm run dev:turbo  # Only use when the SWC native module works
 ```
@@ -191,138 +201,150 @@ The project uses **Feature-Sliced Design** to organize code clearly and keep it 
 ```
 project-root/
 ├── src/
-│   ├── app/                    # Next.js App Router - Routing & Layout
-│   │   ├── (auth)/             # Route group for authentication
-│   │   │   ├── login/
-│   │   │   ├── register/
-│   │   │   └── layout.tsx
-│   │   ├── (main)/             # Route group for main app
+│   ├── app/                          # Next.js App Router - Routing & Layout
+│   │   ├── (main)/                   # Route group for main app
 │   │   │   ├── columns/
 │   │   │   ├── my-record/
-│   │   │   └── layout.tsx
-│   │   ├── api/               # API routes (Next.js API routes)
-│   │   ├── layout.tsx         # Root layout
-│   │   ├── page.tsx           # Home page
-│   │   ├── loading.tsx        # Loading UI
-│   │   ├── error.tsx          # Error boundary
-│   │   └── not-found.tsx     # 404 page
+│   │   ├── api/                      # API routes (Next.js API routes)
+│   │   ├── layout.tsx               # Root layout
+│   │   ├── page.tsx                 # Home page (server component)
+│   │   ├── loading.tsx              # Loading UI
+│   │   ├── error.tsx                # Error boundary
+│   │   └── not-found.tsx            # 404 page
 │   │
-│   ├── features/               # FEATURE = FE logic (per feature)
-│   │   ├── auth/
-│   │   │   ├── components/     # Auth-specific components (if any)
-│   │   │   ├── hooks/          # useAuth.ts
-│   │   │   ├── auth.api.ts     # Re-export from api/endpoints
-│   │   │   ├── auth.store.ts   # Zustand store for auth
-│   │   │   └── types.ts        # Auth-specific types
-│   │   ├── columns/
-│   │   │   └── components/
+│   ├── features/                     # FEATURE = FE logic (per feature)
 │   │   ├── home/
-│   │   │   └── components/
+│   │   │   ├── api.ts                # CSR API for home feature (mock API layer)
+│   │   │   ├── hooks/                # useMealEntries, useTrendChart, ...
+│   │   │   ├── server.ts             # SSR data for home (SEO meta)
+│   │   │   └── components/           # FoodProgress, TrendChart, MealLogGrid, ...
+│   │   ├── columns/
+│   │   │   ├── api.ts                # CSR API for columns feature
+│   │   │   ├── hooks/                # useColumns, ...
+│   │   │   ├── server.ts             # SSR data for columns (SEO meta)
+│   │   │   └── components/           # ColumnsView, ...
 │   │   ├── my-record/
-│   │   │   └── components/
-│   │   └── profile/
-│   │       └── components/     # Profile-specific components (if any)
+│   │   │   ├── api.ts                # CSR API for my-record feature
+│   │   │   ├── server.ts             # SSR data for my-record (SEO meta)
+│   │   │   └── components/           # OverviewCards, BodyRecordChart, ExerciseLog, DiaryGrid
 │   │
-│   ├── shared/                 # SHARED – NO BUSINESS LOGIC
+│   ├── shared/                       # SHARED – NO BUSINESS LOGIC
 │   │   ├── components/
-│   │   │   ├── ui/             # Shared UI components (Button, Input, Modal, Card, Loading)
-│   │   │   └── layout/         # Layout components (Header, Footer, MainLayout)
-│   │   ├── hooks/              # useDebounce, useLocalStorage, useMediaQuery
-│   │   ├── types/              # api.types.ts, user.types.ts
-│   │   └── constants/          # routes.ts
+│   │   │   ├── ui/                   # Shared UI components (Button, Input, Modal, Card, Loading, ...)
+│   │   │   └── layout/               # Layout components (Header, Footer, MainLayout)
+│   │   ├── hooks/                    # useDebounce, useLocalStorage, useMediaQuery
+│   │   ├── types/                    # api.types.ts, user.types.ts
+│   │   └── constants/                # routes.ts
 │   │
-│   ├── api/                    # FE API LAYER (fetch/axios)
-│   │   ├── http.ts             # Axios instance
-│   │   ├── interceptors.ts     # Request/Response interceptors
-│   │   └── endpoints.ts        # authApi, userApi
+│   ├── api/                          # FE API LAYER (fetch/axios)
+│   │   ├── clients/                  # Axios client instances
+│   │   │   ├── http.ts               # Axios instance (real API)
+│   │   │   ├── mockHttp.ts           # Axios instance for mock /jsons
+│   │   │   └── interceptors.ts       # Request/Response interceptors (logging, generic errors)
+│   │   ├── endpoints/                # Endpoint definitions (real + mock)
+│   │   │   ├── endpoints.ts          # userApi, other real APIs
+│   │   │   └── mock.endpoints.ts     # mockApi -> public/jsons (fake backend)
 │   │
-│   ├── store/                  # GLOBAL CLIENT STATE (optional)
-│   │   └── app.store.ts        # Global store if needed
+│   ├── store/                        # GLOBAL CLIENT STATE (optional)
+│   │   └── app.store.ts              # Global store if needed
 │   │
-│   ├── lib/                    # Third-party configs
-│   │   └── zod-schemas.ts     # Zod validation schemas
+│   ├── lib/                          # Cross-cutting, shared libraries
+│   │   ├── env.ts                    # Env helpers (e.g. base URL, app name)
+│   │   ├── server-fetch.ts           # SSR fetch helper (baseURL + revalidate + error)
+│   │   ├── client-fetch.ts           # CSR axios helper (NEXT_PUBLIC_* baseURL)
+│   │   └── zod-schemas.ts            # Zod validation schemas
 │   │
-│   ├── utils/                  # PURE UTILS (no React/Next dependency)
-│   │   ├── format.ts           # Formatting functions
-│   │   ├── validate.ts         # Validation functions
-│   │   └── storage.ts          # LocalStorage utilities
+│   ├── utils/                        # PURE UTILS (no React/Next dependency)
+│   │   ├── format.ts                 # Formatting functions
+│   │   ├── validate.ts               # Validation functions
+│   │   └── storage.ts                # LocalStorage utilities
 │   │
-│   ├── styles/                 # SASS styles
-│   │   ├── globals.scss        # Global styles
-│   │   ├── _variables.scss     # SASS variables
-│   │   ├── _mixins.scss        # SASS mixins
-│   │   ├── _bootstrap-custom.scss  # Bootstrap overrides
-│   │   ├── _typography.scss    # Typography styles
-│   │   └── _utilities.scss     # Utility classes
+│   ├── styles/                       # SASS styles
+│   │   ├── globals.scss              # Global styles
+│   │   ├── _variables.scss           # SASS variables
+│   │   ├── _mixins.scss              # SASS mixins
+│   │   ├── _bootstrap-custom.scss    # Bootstrap overrides
+│   │   ├── _typography.scss          # Typography styles
+│   │   └── _utilities.scss           # Utility classes
 │   │
-│   ├── middleware.ts           # Next.js middleware (auth, locale)
-│   └── env.ts                  # NEXT_PUBLIC_* environment helpers
+│   ├── middleware.ts                 # Next.js middleware (optional cross-cutting logic)
+│   └── env.ts                        # (merged into src/lib/env.ts)
 │
-├── public/                     # Static assets
+├── public/                           # Static assets & mock JSON
 │   ├── images/
 │   ├── icons/
-│   └── fonts/
+│   ├── fonts/
+│   └── jsons/                        # Fake API responses (columns.json, meal-entries.json, trend-chart.json, *-meta.json)
 │
-├── .husky/                    # Git hooks
+├── .husky/                           # Git hooks
 │   ├── pre-commit
 │   └── commit-msg
 │
-├── .env.local.example          # Environment variables template
-├── .eslintrc.json             # ESLint configuration
-├── .prettierrc                # Prettier configuration
-├── next.config.js             # Next.js configuration
-├── tsconfig.json              # TypeScript configuration
-├── package.json               # Dependencies
-└── README.md                  # This file
+├── .env.local.example                # Environment variables template
+├── .eslintrc.json                    # ESLint configuration
+├── .prettierrc                       # Prettier configuration
+├── next.config.js                    # Next.js configuration
+├── tsconfig.json                     # TypeScript configuration
+├── package.json                      # Dependencies
+└── README.md                         # This file
 ```
 
 ### Structure Explanation
 
-- **`app/`**: Next.js App Router – defines routes and layouts.
-- **`features/`**: Business logic per feature (auth, dashboard, profile, etc.).
-  - Each feature has its own `components/` folder for feature-specific components.
-- **`shared/`**: Shared code, not tied to specific business logic.
-  - `shared/components/ui/`: Shared UI components (Button, Input, Modal, Card, Loading).
+- **`app/`**: Next.js App Router – defines routes, layouts and page-level server components.
+- **`features/`**: Business logic per feature (`home`, `columns`, `my-record`, ...).
+  - `server.ts`: SSR data layer (e.g. SEO meta, server-side data) used by `generateMetadata` and page server components.
+  - `api.ts`: CSR API layer for each feature (calls mock endpoints or real API via `api/clients/http`).
+  - `hooks/`: React hooks (`useXXX`) that encapsulate CSR fetching/caching logic for client components.
+  - `components/`: Feature-specific UI components.
+- **`shared/`**: Shared, non-business-specific code.
+  - `shared/components/ui/`: Reusable UI components (Button, Input, Modal, Card, Loading, ...).
   - `shared/components/layout/`: Layout components (Header, Footer, MainLayout).
-- **`api/`**: API layer (Axios instance, interceptors, endpoints).
-- **`utils/`**: Pure utility functions (no React/Next dependency).
-- **`lib/`**: Configurations for third-party libraries.
+- **`api/`**: API layer (Axios clients + interceptors in `clients/`, real & mock endpoints in `endpoints/`).
+- **`lib/`**: Cross-cutting helpers (env, generic server/ client fetch helpers, Zod schemas).
+- **`utils/`**: Pure utilities (no React/Next dependency).
 - **`styles/`**: SASS styles and Bootstrap customization.
+- **`public/jsons/`**: Static JSON files used as a **fake backend** for demo (SSR + CSR) via `mockHttp` / `server-fetch`.
 
-### ⚠️ Lưu ý quan trọng:
+### ⚠️ Important Notes:
 
-- **KHÔNG có `src/components/`** - Đã được refactor sang cấu trúc Feature-Sliced Design
-- **KHÔNG có `src/store/`** - Đã chuyển sang `src/features/auth/auth.store.ts`
-- **KHÔNG có `src/services/`** - Đã chuyển sang `src/api/`
-- **KHÔNG có `src/types/`** - Đã chuyển sang `src/shared/types/`
-- **KHÔNG có `src/constants/`** - Đã chuyển sang `src/shared/constants/`
-- **KHÔNG có `src/hooks/`** - Đã chuyển sang `src/shared/hooks/`
-- Components dùng chung → `src/shared/components/`
-- Components theo feature → `src/features/{feature}/components/`
+- **NO `src/components/`** – Everything has been refactored into the Feature-Sliced structure.
+- **NO `src/store/`** – State is managed locally per feature (via feature-specific hooks/store when needed).
+- **NO `src/services/`** – Moved into `src/api/`.
+- **NO `src/types/`** – Moved into `src/shared/types/`.
+- **NO `src/constants/`** – Moved into `src/shared/constants/`.
+- **NO `src/hooks/`** – Moved into `src/shared/hooks/`.
+- Shared components → `src/shared/components/`
+- Feature-specific components → `src/features/{feature}/components/`
 
-> 💡 **Xem file `CLEANUP_INSTRUCTIONS.md`** để biết cách xóa các thư mục cũ nếu còn sót lại.
+> 💡 **See `CLEANUP_INSTRUCTIONS.md`** for how to safely remove any legacy folders if they still exist.
 
 ## 🛠️ Tech Stack
 
 ### Core Framework
+
 - **Next.js**: 15.0.0+ (App Router)
 - **React**: 19.0.0+
 - **TypeScript**: 5.6.3+ (strict mode)
 
 ### State Management
+
 - **Zustand**: 5.0.2+ (Lightweight state management)
 - **Immer**: 10.1.1+ (Immutable state updates)
 
 ### Data Fetching
+
 - **Axios**: 1.7.7+ (HTTP client with interceptors)
 - **Note**: React Query has been removed to optimize performance and reduce bundle size.
 
 ### Form & Validation
+
 - **React Hook Form**: 7.53.2+ (Form management)
 - **Zod**: 3.23.8+ (Schema validation)
 - **@hookform/resolvers**: 3.9.1+ (Form validation integration)
 
 ### UI & Styling
+
 - **Bootstrap**: 5.3.3+ (CSS framework)
 - **React Bootstrap**: 2.10.4+ (Bootstrap components)
 - **SASS/SCSS**: 1.83.0+ (CSS preprocessor)
@@ -330,9 +352,11 @@ project-root/
 - **clsx**: 2.1.1+ (Conditional classnames)
 
 ### Utilities
+
 - **date-fns**: 4.1.0+ (Date manipulation)
 
 ### Code Quality
+
 - **ESLint**: 8.57.1+ (Code linting)
 - **Prettier**: 3.3.3+ (Code formatting)
 - **Husky**: 9.1.6+ (Git hooks)
@@ -342,6 +366,7 @@ project-root/
 ## 📝 Code Conventions
 
 ### Naming Conventions
+
 - **Component names**: PascalCase (e.g. `Button`, `UserProfile`)
 - **File names**: camelCase.tsx (e.g. `button.tsx`, `userProfile.tsx`)
 - **Constants**: UPPER_SNAKE_CASE (e.g. `API_BASE_URL`, `MAX_RETRIES`)
@@ -349,17 +374,20 @@ project-root/
 - **Interfaces/Types**: PascalCase with `I` prefix for interfaces (e.g. `IUser`, `IButtonProps`)
 
 ### File Structure
+
 - Each component has its own folder:
   - Component file: `ComponentName.tsx`
   - Styles: `ComponentName.module.scss`
   - Index: `index.ts` (export component and types)
 
 ### TypeScript
+
 - Use strict mode.
 - Always define types for props, state, and functions.
 - Avoid `any`; prefer `unknown` if necessary.
 
 ### Code Style
+
 - Use functional components with hooks.
 - Prefer named exports.
 - Add comments for complex functions.
@@ -369,25 +397,26 @@ project-root/
 
 ### Server Configuration
 
-| Variable | Description | Example | Required |
-|----------|-------------|---------|----------|
-| `PORT` | Port for development/production server | `3000` | No (default: 3000) |
+| Variable | Description                            | Example | Required           |
+| -------- | -------------------------------------- | ------- | ------------------ |
+| `PORT`   | Port for development/production server | `3000`  | No (default: 3000) |
 
 ### Required Variables
 
-| Variable | Description | Example |
-|----------|-------------|---------|
+| Variable              | Description          | Example                     |
+| --------------------- | -------------------- | --------------------------- |
 | `NEXT_PUBLIC_API_URL` | Base URL for the API | `http://localhost:3000/api` |
-| `NEXT_PUBLIC_APP_URL` | Base URL of the app | `http://localhost:3000` |
+| `NEXT_PUBLIC_APP_URL` | Base URL of the app  | `http://localhost:3000`     |
 
 ### Optional Variables
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `NEXT_PUBLIC_APP_NAME` | Application name | `React Test App` |
-| `NEXT_PUBLIC_API_KEY` | API key for external services | `your_api_key` |
+| Variable               | Description                   | Example          |
+| ---------------------- | ----------------------------- | ---------------- |
+| `NEXT_PUBLIC_APP_NAME` | Application name              | `React Test App` |
+| `NEXT_PUBLIC_API_KEY`  | API key for external services | `your_api_key`   |
 
 **Notes**:
+
 - Environment variables starting with `NEXT_PUBLIC_` are exposed on the client side.
 - `PORT` is server-side only; it does **not** need the `NEXT_PUBLIC_` prefix.
 - If you change `PORT`, remember to update `NEXT_PUBLIC_API_URL` and `NEXT_PUBLIC_APP_URL` accordingly.
@@ -411,6 +440,7 @@ npm run build
 ### Deploy
 
 This project can be deployed to:
+
 - **Vercel** (recommended for Next.js)
 - **Netlify**
 - **AWS Amplify**
@@ -486,6 +516,7 @@ npm run dev:port  # Uses PORT from .env.local
 ### "@next/swc-win32-x64-msvc is not a valid Win32 application" and "turbo.createProject is not supported"
 
 **Cause:**
+
 - SWC native module is corrupted or incompatible with your system.
 - Next.js falls back to WASM (10–20x slower).
 - Turbo mode does not work with WASM bindings.
@@ -519,6 +550,7 @@ node --version
 ```
 
 **Notes**:
+
 - If files are locked (Access denied):
   1. Close all open terminals/editors.
   2. Kill running Node.js processes (Task Manager).
@@ -531,10 +563,12 @@ node --version
 If the app is slow when running `npm run dev`, possible reasons:
 
 **1. SWC native module does not load (common on Windows)**
+
 - Next.js falls back to WASM (much slower).
 - **Solution**: See the SWC fix section above.
 
 **2. Turbo Mode does not work with WASM**
+
 - Turbo mode only works when the SWC native module loads.
 - When SWC falls back to WASM, Turbo throws `turbo.createProject is not supported`.
 - **Solution**: Fix the SWC native module (see 1) or do not use Turbo mode.
@@ -542,14 +576,17 @@ If the app is slow when running `npm run dev`, possible reasons:
 - Once SWC native module works, you can use `npm run dev:turbo`.
 
 **3. Middleware running on too many routes**
+
 - Middleware has been optimized to skip static files.
 - If it's still slow, check `src/middleware.ts` logic.
 
 **4. Font loading**
+
 - Fonts are optimized with `display: swap` and preload.
 - CSS variables are used for further optimization.
 
 **5. Bootstrap and SASS compilation**
+
 - SASS is configured with an optimal output style.
 - Bootstrap is imported once in `globals.scss`.
 
@@ -562,10 +599,12 @@ npm run dev
 ```
 
 **7. Too many dependencies**
+
 - Unnecessary packages (lodash-es, crypto-js, etc.) have been removed.
 - Only essential packages are kept.
 
 **Optimizations already applied:**
+
 - ✅ Optimized Webpack watch options
 - ✅ Optimized middleware matcher (skip static files)
 - ✅ Optimized font loading (swap, preload, CSS variables)
@@ -574,6 +613,7 @@ npm run dev
 - ✅ SWC minifier (default in Next.js 15)
 
 **Turbo Mode notes:**
+
 - Turbo mode only works when the SWC native module loads.
 - When SWC falls back to WASM, Turbo will not work.
 - The default `dev` script does **not** use Turbo to avoid errors.

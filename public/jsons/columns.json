@@ -1,0 +1,148 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "category": "recommended",
+      "imageUrl": "/images/columns/column-1.jpg",
+      "date": "2021.05.17",
+      "time": "23:25",
+      "title": "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
+      "tags": ["#魚料理", "#和食", "#DHA"]
+    },
+    {
+      "id": "2",
+      "category": "diet",
+      "imageUrl": "/images/columns/column-2.jpg",
+      "date": "2021.05.17",
+      "time": "23:25",
+      "title": "運動前後の食事で差がつく！ダイエットを成功させるポイント",
+      "tags": ["#ダイエット", "#運動", "#栄養"]
+    },
+    {
+      "id": "3",
+      "category": "beauty",
+      "imageUrl": "/images/columns/column-3.jpg",
+      "date": "2021.05.17",
+      "time": "23:25",
+      "title": "肌の調子を整える！毎日続けたい簡単習慣",
+      "tags": ["#美容", "#スキンケア", "#習慣"]
+    },
+    {
+      "id": "4",
+      "category": "health",
+      "imageUrl": "/images/columns/column-4.jpg",
+      "date": "2021.05.17",
+      "time": "23:25",
+      "title": "睡眠の質を上げるコツ：今日からできる健康管理",
+      "tags": ["#健康", "#睡眠", "#生活習慣"]
+    },
+    {
+      "id": "5",
+      "category": "recommended",
+      "imageUrl": "/images/columns/column-5.jpg",
+      "date": "2021.05.17",
+      "time": "23:25",
+      "title": "忙しくても続く！時短で作れるヘルシーレシピ",
+      "tags": ["#時短", "#レシピ", "#健康"]
+    },
+    {
+      "id": "6",
+      "category": "diet",
+      "imageUrl": "/images/columns/column-6.jpg",
+      "date": "2021.05.17",
+      "time": "23:25",
+      "title": "糖質と上手に付き合う：無理なく続ける食事管理",
+      "tags": ["#糖質", "#食事管理", "#ダイエット"]
+    },
+    {
+      "id": "7",
+      "category": "beauty",
+      "imageUrl": "/images/columns/column-7.jpg",
+      "date": "2021.05.17",
+      "time": "23:25",
+      "title": "からだの内側からキレイに：栄養と美容の関係",
+      "tags": ["#美容", "#栄養", "#インナーケア"]
+    },
+    {
+      "id": "8",
+      "category": "health",
+      "imageUrl": "/images/columns/column-8.jpg",
+      "date": "2021.05.17",
+      "time": "23:25",
+      "title": "毎日できるストレッチで肩こりを改善しよう",
+      "tags": ["#ストレッチ", "#健康", "#肩こり"]
+    },
+    {
+      "id": "9",
+      "category": "recommended",
+      "imageUrl": "/images/columns/column-2.jpg",
+      "date": "2021.05.16",
+      "time": "21:10",
+      "title": "食事記録を続けるコツ：挫折しないための工夫",
+      "tags": ["#習慣", "#記録", "#モチベーション"]
+    },
+    {
+      "id": "10",
+      "category": "diet",
+      "imageUrl": "/images/columns/column-3.jpg",
+      "date": "2021.05.16",
+      "time": "21:10",
+      "title": "外食でもできる！ダイエット中のメニュー選び",
+      "tags": ["#外食", "#ダイエット", "#メニュー"]
+    },
+    {
+      "id": "11",
+      "category": "beauty",
+      "imageUrl": "/images/columns/column-4.jpg",
+      "date": "2021.05.16",
+      "time": "21:10",
+      "title": "水分補給で変わる！肌と体のコンディション",
+      "tags": ["#水分", "#美容", "#健康"]
+    },
+    {
+      "id": "12",
+      "category": "health",
+      "imageUrl": "/images/columns/column-5.jpg",
+      "date": "2021.05.16",
+      "time": "21:10",
+      "title": "1日10分の運動で健康をキープする方法",
+      "tags": ["#運動", "#健康", "#習慣"]
+    },
+    {
+      "id": "13",
+      "category": "recommended",
+      "imageUrl": "/images/columns/column-6.jpg",
+      "date": "2021.05.15",
+      "time": "18:40",
+      "title": "コンビニで買える！おすすめ健康フード",
+      "tags": ["#コンビニ", "#健康", "#食事"]
+    },
+    {
+      "id": "14",
+      "category": "diet",
+      "imageUrl": "/images/columns/column-7.jpg",
+      "date": "2021.05.15",
+      "time": "18:40",
+      "title": "脂質の取り方を見直す：バランスの良い食生活",
+      "tags": ["#脂質", "#食生活", "#ダイエット"]
+    },
+    {
+      "id": "15",
+      "category": "beauty",
+      "imageUrl": "/images/columns/column-8.jpg",
+      "date": "2021.05.15",
+      "time": "18:40",
+      "title": "朝のルーティンで差がつく！美容習慣まとめ",
+      "tags": ["#朝活", "#美容", "#習慣"]
+    },
+    {
+      "id": "16",
+      "category": "health",
+      "imageUrl": "/images/columns/column-1.jpg",
+      "date": "2021.05.15",
+      "time": "18:40",
+      "title": "健康診断の見方：数値から分かる体の状態",
+      "tags": ["#健康診断", "#健康", "#知識"]
+    }
+  ]
+}

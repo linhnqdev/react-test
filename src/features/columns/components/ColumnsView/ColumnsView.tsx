@@ -3,21 +3,12 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 
+import type { ColumnCategory } from "@/features/columns/api";
+import { useColumns } from "@/features/columns/hooks/useColumns";
+import { Loading } from "@/shared/components/ui/Loading";
 import { LoadMoreButton } from "@/shared/components/ui/LoadMoreButton";
 
 import styles from "./ColumnsView.module.scss";
-
-type ColumnCategory = "recommended" | "diet" | "beauty" | "health";
-
-interface IColumnItem {
-  id: string;
-  category: ColumnCategory;
-  imageUrl: string;
-  date: string; // e.g. 2021.05.17
-  time: string; // e.g. 23:25
-  title: string;
-  tags: string[];
-}
 
 const CATEGORY_CARDS: Array<{ key: ColumnCategory; title: string; subtitle: string }> = [
   { key: "recommended", title: "RECOMMENDED\nCOLUMN", subtitle: "オススメ" },
@@ -26,161 +17,15 @@ const CATEGORY_CARDS: Array<{ key: ColumnCategory; title: string; subtitle: stri
   { key: "health", title: "RECOMMENDED\nHEALTH", subtitle: "健康" },
 ];
 
-const ALL_ITEMS: IColumnItem[] = [
-  {
-    id: "1",
-    category: "recommended",
-    imageUrl: "/images/columns/column-1.jpg",
-    date: "2021.05.17",
-    time: "23:25",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "2",
-    category: "diet",
-    imageUrl: "/images/columns/column-2.jpg",
-    date: "2021.05.17",
-    time: "23:25",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "3",
-    category: "beauty",
-    imageUrl: "/images/columns/column-3.jpg",
-    date: "2021.05.17",
-    time: "23:25",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "4",
-    category: "health",
-    imageUrl: "/images/columns/column-4.jpg",
-    date: "2021.05.17",
-    time: "23:25",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "5",
-    category: "recommended",
-    imageUrl: "/images/columns/column-5.jpg",
-    date: "2021.05.17",
-    time: "23:25",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "6",
-    category: "diet",
-    imageUrl: "/images/columns/column-6.jpg",
-    date: "2021.05.17",
-    time: "23:25",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "7",
-    category: "beauty",
-    imageUrl: "/images/columns/column-7.jpg",
-    date: "2021.05.17",
-    time: "23:25",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "8",
-    category: "health",
-    imageUrl: "/images/columns/column-8.jpg",
-    date: "2021.05.17",
-    time: "23:25",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "9",
-    category: "recommended",
-    imageUrl: "/images/columns/column-2.jpg",
-    date: "2021.05.16",
-    time: "21:10",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "10",
-    category: "diet",
-    imageUrl: "/images/columns/column-3.jpg",
-    date: "2021.05.16",
-    time: "21:10",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "11",
-    category: "beauty",
-    imageUrl: "/images/columns/column-4.jpg",
-    date: "2021.05.16",
-    time: "21:10",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "12",
-    category: "health",
-    imageUrl: "/images/columns/column-5.jpg",
-    date: "2021.05.16",
-    time: "21:10",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "13",
-    category: "recommended",
-    imageUrl: "/images/columns/column-6.jpg",
-    date: "2021.05.15",
-    time: "18:40",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "14",
-    category: "diet",
-    imageUrl: "/images/columns/column-7.jpg",
-    date: "2021.05.15",
-    time: "18:40",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "15",
-    category: "beauty",
-    imageUrl: "/images/columns/column-8.jpg",
-    date: "2021.05.15",
-    time: "18:40",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-  {
-    id: "16",
-    category: "health",
-    imageUrl: "/images/columns/column-1.jpg",
-    date: "2021.05.15",
-    time: "18:40",
-    title: "魚を食べて頭もカラダも元気に！知っておきたい魚を食べるメリット",
-    tags: ["#魚料理", "#和食", "#DHA"],
-  },
-];
-
 export function ColumnsView() {
   const [selectedCategory, setSelectedCategory] = useState<ColumnCategory | null>(null);
   const [displayCount, setDisplayCount] = useState(8);
+  const { items, isLoading, error, reload } = useColumns();
 
   const filtered = useMemo(() => {
-    const base = selectedCategory ? ALL_ITEMS.filter((x) => x.category === selectedCategory) : ALL_ITEMS;
+    const base = selectedCategory ? items.filter((x) => x.category === selectedCategory) : items;
     return base;
-  }, [selectedCategory]);
+  }, [items, selectedCategory]);
 
   const visibleItems = filtered.slice(0, displayCount);
   const hasMore = filtered.length > displayCount;
@@ -193,6 +38,17 @@ export function ColumnsView() {
   return (
     <div className="container">
       <div className={styles.page}>
+        {isLoading && <Loading text="Loading..." />}
+        {error && (
+          <div className="text-center py-4" role="alert">
+            <p className="mb-3">{error}</p>
+            <LoadMoreButton
+              label="Retry"
+              onClick={reload}
+            />
+          </div>
+        )}
+
         <div className={styles.categories}>
           {CATEGORY_CARDS.map((card) => (
             <button
