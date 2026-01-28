@@ -1,6 +1,19 @@
 // Custom Bootstrap Overrides
 // Import after variables and mixins
 
+// Override Container max-width for desktop/PC (960px)
+.container {
+  @media (min-width: 992px) {
+    max-width: 960px;
+  }
+  @media (min-width: 1200px) {
+    max-width: 960px;
+  }
+  @media (min-width: 1400px) {
+    max-width: 960px;
+  }
+}
+
 // Override Bootstrap components here
 .btn {
   font-weight: 500;

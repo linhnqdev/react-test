@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useId, useState } from "react";
-import { FiMenu } from "react-icons/fi";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 import styles from "./Header.module.scss";
 
@@ -63,6 +62,8 @@ const MenuIcon: React.FC = () => (
 export function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const [menuPos, setMenuPos] = useState<{ top: number; left: number } | null>(null);
   const menuId = useId();
 
   useEffect(() => {
@@ -73,6 +74,51 @@ export function Header() {
     globalThis.addEventListener("keydown", onKeyDown);
     return () => globalThis.removeEventListener("keydown", onKeyDown);
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const PANEL_WIDTH = 320;
+    const GAP = 8;
+    const PADDING = 8;
+
+    let raf = 0;
+    const updatePos = () => {
+      const el = menuButtonRef.current;
+      if (!el) return;
+
+      const rect = el.getBoundingClientRect();
+      const top = rect.bottom + GAP;
+      const preferredLeft = rect.right - PANEL_WIDTH;
+      const maxLeft = Math.max(PADDING, window.innerWidth - PANEL_WIDTH - PADDING);
+      const left = Math.min(Math.max(preferredLeft, PADDING), maxLeft);
+
+      setMenuPos({ top, left });
+    };
+
+    const scheduleUpdate = () => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(updatePos);
+    };
+
+    // initial position
+    scheduleUpdate();
+
+    window.addEventListener("resize", scheduleUpdate);
+    // capture scroll so it updates even when scrolling nested containers
+    window.addEventListener("scroll", scheduleUpdate, true);
+
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("scroll", scheduleUpdate, true);
+    };
+  }, [isMenuOpen]);
+
+  const menuPanelStyle = useMemo(() => {
+    if (!menuPos) return undefined;
+    return { top: `${menuPos.top}px`, left: `${menuPos.left}px` } as const;
+  }, [menuPos]);
 
   return (
     <header className={styles.header}>
@@ -108,11 +154,12 @@ export function Header() {
               <span className={styles.navText}>お知らせ</span>
             </Link>
             <button
+              ref={menuButtonRef}
               className={styles.menuButton}
               aria-label="Menu"
               aria-expanded={isMenuOpen}
               aria-controls={menuId}
-              onClick={() => setIsMenuOpen(true)}
+              onClick={() => setIsMenuOpen((prev) => !prev)}
             >
               <MenuIcon className={styles.icon} />
             </button>
@@ -133,7 +180,7 @@ export function Header() {
             aria-label="Close menu"
             onClick={() => setIsMenuOpen(false)}
           />
-          <div className={styles.menuPanel}>
+          <div className={styles.menuPanel} style={menuPanelStyle}>
             <button
               type="button"
               className={styles.menuClose}

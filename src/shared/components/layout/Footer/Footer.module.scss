@@ -12,6 +12,10 @@
   justify-content: center;
   align-items: center;
   gap: 45px;
+
+  @include respond-to(md) {
+    gap: 24px;
+  }
 }
 
 .link {

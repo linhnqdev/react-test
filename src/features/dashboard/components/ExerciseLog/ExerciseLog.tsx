@@ -20,6 +20,11 @@ const exercises: IExerciseEntry[] = [
   { id: "8", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
   { id: "9", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
   { id: "10", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
+  { id: "11", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
+  { id: "12", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
+  { id: "13", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
+  { id: "14", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
+  { id: "15", name: "家事全般(立位・軽い)", calories: 26, duration: 10 },
 ];
 
 export function ExerciseLog() {

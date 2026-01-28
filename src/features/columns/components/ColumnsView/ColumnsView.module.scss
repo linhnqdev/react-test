@@ -3,6 +3,10 @@
 
 .page {
   padding: 56px 0 64px;
+
+  @include respond-to(sm) {
+    padding: 24px 0;
+  }
 }
 
 .categories {

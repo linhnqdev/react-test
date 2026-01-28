@@ -22,7 +22,7 @@ interface HoverPoint {
 
 export function TrendChart({
   data,
-  height = 270,
+  height = 292,
   backgroundColor = "#2e2e2e",
 }: ITrendChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);

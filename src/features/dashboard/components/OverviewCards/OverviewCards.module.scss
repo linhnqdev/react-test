@@ -11,6 +11,10 @@
     grid-template-columns: 1fr;
     gap: 12px;
   }
+
+  @include respond-to(sm) {
+    margin-bottom: 24px;
+  }
 }
 
 .card {

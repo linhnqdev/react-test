@@ -5,6 +5,11 @@
   background: $dark;
   padding: 16px 26px;
   margin-bottom: 56px;
+
+  @include respond-to(sm) {
+    padding: 12px;
+    margin-bottom: 24px;
+  }
 }
 
 .header {

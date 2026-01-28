@@ -7,6 +7,10 @@
   gap: 70px;
   flex-wrap: wrap;
   margin-bottom: 24px;
+
+  @include respond-to(sm) {
+   gap: 12px;
+  }
 }
 
 .hexButton {
@@ -23,7 +27,6 @@
   justify-content: center;
   color: #ffffff;
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  padding: 1.5rem 0;
 
   &:hover {
     transform: scale(1.05);
@@ -38,9 +41,17 @@
     filter: brightness(0.9);
     box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
   }
+
+  @include respond-to(sm) {
+    width: 66px;
+    height: 80px;
+  }
 }
 
 .icon {
+  svg {
+    height: 30px;
+  }
 }
 
 .label {
@@ -48,4 +59,9 @@
   font-family: Inter;
   font-weight: 400;
   line-height: 24px;
+
+  @include respond-to(sm) {
+    font-size: 13px;
+    line-height: 16px;
+  }
 }
