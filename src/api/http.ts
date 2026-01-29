@@ -1,6 +1,8 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-import { setupInterceptors } from "./interceptors";
+
 import { env } from "@/lib/env";
+
+import { setupInterceptors } from "./interceptors";
 
 /**
  * Create and configure Axios instance with base URL and default settings

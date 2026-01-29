@@ -1,7 +1,6 @@
 import { mockApi } from "@/api/endpoints/mock.endpoints";
-import type { IMealEntry, ITrendPoint, IFoodProgress } from "./types";
 
-export type { IMealEntry, ITrendPoint, IFoodProgress };
+import type { IMealEntry, ITrendPoint, IFoodProgress } from "./types";
 
 export type TrendPeriod = "day" | "week" | "month" | "year";
 

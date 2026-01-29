@@ -33,7 +33,7 @@ export default async function Home() {
         </h1>
         <div className={styles.topPage}>
           <div className={styles.topPageBanner}>
-            <FoodProgress date="05/21" progress={75} imageUrl="/images/food-progress.jpg" />
+            <FoodProgress />
           </div>
           <div className={styles.topPageChart}>
             <TrendChart />

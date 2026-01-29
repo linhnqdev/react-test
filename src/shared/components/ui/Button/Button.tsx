@@ -1,5 +1,6 @@
-import { ButtonHTMLAttributes, forwardRef } from "react";
 import clsx from "clsx";
+import { ButtonHTMLAttributes, forwardRef } from "react";
+
 import styles from "./Button.module.scss";
 
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -30,17 +31,15 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
           styles.button,
           styles[`button--${variant}`],
           styles[`button--${size}`],
-          {
-            [styles["button--loading"]]: isLoading,
-            [styles["button--full-width"]]: fullWidth,
-          },
+          isLoading && styles["button--loading"],
+          fullWidth && styles["button--full-width"],
           className
         )}
         disabled={disabled || isLoading}
         {...props}
       >
         {isLoading && <span className={styles.spinner} />}
-        <span className={clsx({ [styles["button-text"]]: isLoading })}>{children}</span>
+        <span className={clsx(isLoading && styles["button-text"])}>{children}</span>
       </button>
     );
   }

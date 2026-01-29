@@ -1,5 +1,5 @@
-import { ButtonHTMLAttributes } from "react";
 import clsx from "clsx";
+import { ButtonHTMLAttributes } from "react";
 
 import styles from "./LoadMoreButton.module.scss";
 

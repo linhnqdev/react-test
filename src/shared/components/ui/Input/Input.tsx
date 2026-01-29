@@ -1,5 +1,6 @@
-import { InputHTMLAttributes, forwardRef } from "react";
 import clsx from "clsx";
+import { InputHTMLAttributes, forwardRef } from "react";
+
 import styles from "./Input.module.scss";
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -15,9 +16,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
 
     return (
       <div
-        className={clsx(styles.inputWrapper, {
-          [styles["inputWrapper--full-width"]]: fullWidth,
-        })}
+        className={clsx(styles.inputWrapper, fullWidth && styles["inputWrapper--full-width"])}
       >
         {label && (
           <label htmlFor={inputId} className={styles.label}>
@@ -29,9 +28,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
           id={inputId}
           className={clsx(
             styles.input,
-            {
-              [styles["input--error"]]: error,
-            },
+            error && styles["input--error"],
             className
           )}
           aria-invalid={error ? "true" : "false"}

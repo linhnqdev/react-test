@@ -142,8 +142,8 @@ export function Header() {
               <span className={styles.navText}>自分の記録</span>
             </Link>
             <Link
-              href="/"
-              className={`${styles.navItem} ${pathname === "/" ? styles.active : ""}`}
+              href="/challenge"
+              className={`${styles.navItem} ${pathname === "/challenge" ? styles.active : ""}`}
             >
               <ChallengeIcon />
               <span className={styles.navText}>チャレンジ</span>
@@ -166,7 +166,7 @@ export function Header() {
               aria-controls={menuId}
               onClick={() => setIsMenuOpen((prev) => !prev)}
             >
-              <MenuIcon className={styles.icon} />
+              <MenuIcon />
             </button>
           </nav>
         </div>

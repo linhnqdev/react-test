@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 import { homeApi } from "@/features/home/api";
 import type { IFoodProgress } from "@/features/home/types";

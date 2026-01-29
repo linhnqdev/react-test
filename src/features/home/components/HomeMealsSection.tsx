@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 
+import styles from "@/app/page.module.scss";
+
 import { MealCategoryButtons } from "./MealCategoryButtons";
 import { MealLogGrid } from "./MealLogGrid";
-import styles from "@/app/page.module.scss";
 
 type MealType = "morning" | "lunch" | "dinner" | "snack";
 

@@ -31,24 +31,13 @@ export function ColumnsView() {
   const hasMore = filtered.length > displayCount;
 
   const onSelectCategory = (key: ColumnCategory) => {
-    setSelectedCategory((prev) => (prev === key ? null : key));
+    setSelectedCategory((prev: ColumnCategory | null) => (prev === key ? null : key));
     setDisplayCount(8);
   };
 
   return (
     <div className="container">
       <div className={styles.page}>
-        {isLoading && <Loading text="Loading..." />}
-        {error && (
-          <div className="text-center py-4" role="alert">
-            <p className="mb-3">{error}</p>
-            <LoadMoreButton
-              label="Retry"
-              onClick={reload}
-            />
-          </div>
-        )}
-
         <div className={styles.categories}>
           {CATEGORY_CARDS.map((card) => (
             <button
@@ -71,46 +60,62 @@ export function ColumnsView() {
           ))}
         </div>
 
-        <div className={styles.grid}>
-          {visibleItems.map((item) => (
-            <article key={item.id} className={styles.card}>
-              <div className={styles.imageWrap}>
-                <Image
-                  src={item.imageUrl}
-                  alt={item.title}
-                  fill
-                  className={styles.image}
-                  sizes="(max-width: 768px) 100vw, 25vw"
-                />
-                <div className={styles.dateLabel}>
-                  {item.date} <span className={styles.time}>{item.time}</span>
-                </div>
-              </div>
-              <div className={styles.body}>
-                <div className={styles.title} title={item.title}>
-                  {item.title}
-                </div>
-                <div className={styles.tags}>
-                  {item.tags.map((t) => (
-                    <span key={t} className={styles.tag}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {hasMore && (
-          <div className="text-center">
+        {error && (
+          <div className="text-center py-4" role="alert">
+            <p className="mb-3">{error}</p>
             <LoadMoreButton
-              label="コラムをもっと見る"
-              className={styles.loadMoreBtn}
-              onClick={() => hasMore && setDisplayCount((p) => p + 8)}
-              disabled={!hasMore}
-              aria-disabled={!hasMore}
+              label="Retry"
+              onClick={reload}
             />
+          </div>
+        )}
+
+        {isLoading ? (
+          <Loading text="Loading..." />
+        ) : (
+          <div>
+            <div className={styles.grid}>
+              {visibleItems.map((item) => (
+                <article key={item.id} className={styles.card}>
+                  <div className={styles.imageWrap}>
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.title}
+                      fill
+                      className={styles.image}
+                      sizes="(max-width: 768px) 100vw, 25vw"
+                    />
+                    <div className={styles.dateLabel}>
+                      {item.date} <span className={styles.time}>{item.time}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div className={styles.title} title={item.title}>
+                      {item.title}
+                    </div>
+                    <div className={styles.tags}>
+                      {item.tags.map((t: string) => (
+                        <span key={t} className={styles.tag}>
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {hasMore && (
+              <div className="text-center">
+                <LoadMoreButton
+                  label="コラムをもっと見る"
+                  className={styles.loadMoreBtn}
+                  onClick={() => hasMore && setDisplayCount((p) => p + 8)}
+                  disabled={!hasMore}
+                  aria-disabled={!hasMore}
+                />
+              </div>
+            )}
           </div>
         )}
       </div>

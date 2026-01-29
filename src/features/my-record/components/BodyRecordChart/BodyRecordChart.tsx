@@ -2,10 +2,12 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { homeApi, type ITrendPoint, type TrendPeriod } from "@/features/home/api";
+import { homeApi, type TrendPeriod } from "@/features/home/api";
+import type { ITrendPoint } from "@/features/home/types";
 import { Loading } from "@/shared/components/ui/Loading";
 
 import { TrendChart } from "../../../home/components/TrendChart";
+
 import styles from "./BodyRecordChart.module.scss";
 
 type TimePeriod = TrendPeriod;

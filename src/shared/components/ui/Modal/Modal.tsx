@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
 import clsx from "clsx";
+import { useEffect } from "react";
+
 import { Button } from "../Button";
+
 import styles from "./Modal.module.scss";
 
 export interface IModalProps {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import styles from "./MealCategoryButtons.module.scss";
 
 type MealType = "morning" | "lunch" | "dinner" | "snack";

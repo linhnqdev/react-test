@@ -9,12 +9,13 @@
 .content {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 45px;
 
   @include respond-to(md) {
     gap: 24px;
+    justify-content: center;
   }
 }
 

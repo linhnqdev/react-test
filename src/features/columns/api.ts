@@ -1,5 +1,6 @@
-import type { ColumnCategory, IColumnItem } from "./types";
 import { mockApi } from "@/api/endpoints/mock.endpoints";
+
+import type { ColumnCategory, IColumnItem } from "./types";
 
 export type { ColumnCategory, IColumnItem };
 

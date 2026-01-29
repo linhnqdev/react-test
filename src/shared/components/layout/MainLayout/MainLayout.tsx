@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Header } from "../Header";
+
 import { Footer } from "../Footer";
+import { Header } from "../Header";
+
 import styles from "./MainLayout.module.scss";
 
 interface IMainLayoutProps {

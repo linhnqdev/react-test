@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 
 import { myRecordApi } from "@/features/my-record/api";
 import type { IDiaryEntry } from "@/features/my-record/types";
-import { LoadMoreButton } from "@/shared/components/ui/LoadMoreButton";
 import { Loading } from "@/shared/components/ui/Loading";
+import { LoadMoreButton } from "@/shared/components/ui/LoadMoreButton";
+
 import styles from "./DiaryGrid.module.scss";
 
 const FALLBACK_DIARY_ENTRIES: IDiaryEntry[] = [];

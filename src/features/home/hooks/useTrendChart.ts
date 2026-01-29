@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { homeApi, type ITrendPoint } from "../api";
+import { homeApi } from "../api";
+import type { ITrendPoint } from "../types";
 
 export interface UseTrendChartResult {
   data: ITrendPoint[];

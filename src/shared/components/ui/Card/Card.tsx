@@ -1,5 +1,6 @@
-import { HTMLAttributes } from "react";
 import clsx from "clsx";
+import { HTMLAttributes } from "react";
+
 import styles from "./Card.module.scss";
 
 export interface ICardProps extends HTMLAttributes<HTMLDivElement> {
@@ -14,9 +15,7 @@ export function Card({ title, description, footer, hover = false, className, chi
     <div
       className={clsx(
         styles.card,
-        {
-          [styles["card--hover"]]: hover,
-        },
+        hover && styles["card--hover"],
         className
       )}
       {...props}

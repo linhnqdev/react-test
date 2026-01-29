@@ -1,7 +1,8 @@
-import { mockHttp } from "./mockHttp";
 import type { IColumnItem } from "@/features/columns/types";
 import type { IMealEntry, ITrendPoint, IFoodProgress } from "@/features/home/types";
 import type { IExerciseEntry, IDiaryEntry } from "@/features/my-record/types";
+
+import { mockHttp } from "./mockHttp";
 
 type TrendPeriod = "day" | "week" | "month" | "year";
 
@@ -19,14 +20,14 @@ export const mockApi = {
     return res.data.items;
   },
   getTrendChart: async (period: TrendPeriod = "year"): Promise<ITrendPoint[]> => {
-    const path =
-      period === "day"
-        ? "/jsons/trend-chart-day.json"
-        : period === "week"
-          ? "/jsons/trend-chart-week.json"
-          : period === "month"
-            ? "/jsons/trend-chart-month.json"
-            : "/jsons/trend-chart-year.json";
+    let path = "/jsons/trend-chart-year.json";
+    if (period === "day") {
+      path = "/jsons/trend-chart-day.json";
+    } else if (period === "week") {
+      path = "/jsons/trend-chart-week.json";
+    } else if (period === "month") {
+      path = "/jsons/trend-chart-month.json";
+    }
 
     const res = await mockHttp.get<IListResponse<ITrendPoint>>(path);
     return res.data.items;

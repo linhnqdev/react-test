@@ -4,16 +4,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import { useMealEntries } from "@/features/home/hooks/useMealEntries";
-import { LoadMoreButton } from "@/shared/components/ui/LoadMoreButton";
+import type { IMealEntry } from "@/features/home/types";
 import { Loading } from "@/shared/components/ui/Loading";
-import styles from "./MealLogGrid.module.scss";
+import { LoadMoreButton } from "@/shared/components/ui/LoadMoreButton";
 
-export interface IMealEntry {
-  id: string;
-  date: string;
-  mealType: "Morning" | "Lunch" | "Dinner" | "Snack";
-  imageUrl?: string;
-}
+import styles from "./MealLogGrid.module.scss";
 
 export interface IMealLogGridProps {
   entries?: IMealEntry[];
@@ -22,7 +17,7 @@ export interface IMealLogGridProps {
 }
 
 export function MealLogGrid({ entries, filter, onLoadMore }: Readonly<IMealLogGridProps>) {
-  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [_showScrollTop, setShowScrollTop] = useState(false);
   const [displayCount, setDisplayCount] = useState(8);
   const { entries: remoteEntries, isLoading, error, reload } = useMealEntries();
 
@@ -62,10 +57,6 @@ export function MealLogGrid({ entries, filter, onLoadMore }: Readonly<IMealLogGr
   const handleLoadMore = () => {
     setDisplayCount((prev) => prev + 8);
     onLoadMore?.();
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (

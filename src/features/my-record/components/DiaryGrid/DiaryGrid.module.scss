@@ -14,7 +14,7 @@
 
 .card {
   border: 2px solid #707070;
-  padding: 16px;
+  padding: 16px 16px 27px 16px;
   min-height: 144px;
   transition: $transition-base;
 
@@ -32,7 +32,7 @@
   letter-spacing: 0.09px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   margin-bottom: 12px;
 }
 
@@ -48,9 +48,10 @@
 .content {
   font-size: 12px;
   line-height: 17px;
+  letter-spacing: 0.06px;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
 }
 

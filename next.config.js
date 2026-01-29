@@ -23,6 +23,8 @@ const nextConfig = {
   
   // Tối ưu webpack cho development
   webpack: (config, { dev, isServer }) => {
+    config.cache = false;
+  
     if (dev && !isServer) {
       // Tăng tốc rebuild trong dev mode
       config.watchOptions = {

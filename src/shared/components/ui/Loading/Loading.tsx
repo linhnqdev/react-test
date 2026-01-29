@@ -1,4 +1,5 @@
 import clsx from "clsx";
+
 import styles from "./Loading.module.scss";
 
 export interface ILoadingProps {
@@ -10,9 +11,7 @@ export interface ILoadingProps {
 export function Loading({ size = "md", fullScreen = false, text }: ILoadingProps) {
   return (
     <div
-      className={clsx(styles.loadingWrapper, {
-        [styles["loadingWrapper--full-screen"]]: fullScreen,
-      })}
+      className={clsx(styles.loadingWrapper, fullScreen && styles["loadingWrapper--full-screen"])}
     >
       <div
         className={clsx(styles.spinner, styles[`spinner--${size}`])}

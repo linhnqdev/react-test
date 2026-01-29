@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import styles from "./Footer.module.scss";
 
 export function Footer() {
@@ -15,8 +16,8 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className="container">
         <div className={styles.content}>
-          {links.map((link, index) => (
-            <span key={index}>
+          {links.map((link) => (
+            <span key={link.label}>
               <Link href={link.href} className={styles.link}>
                 {link.label}
               </Link>

@@ -1,6 +1,16 @@
-import type { IMealEntry, ITrendPoint } from "@/api/endpoints/mock.endpoints";
+// Domain types for home feature
+export interface IMealEntry {
+  id: string;
+  date: string;
+  mealType: "Morning" | "Lunch" | "Dinner" | "Snack";
+  imageUrl?: string;
+}
 
-export type { IMealEntry, ITrendPoint };
+export interface ITrendPoint {
+  month: string;
+  value1: number;
+  value2: number;
+}
 
 export interface IFoodProgress {
   date: string;

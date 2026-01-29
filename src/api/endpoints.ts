@@ -1,5 +1,6 @@
-import { http } from "./http";
 import type { IUser, ICreateUserRequest, IUpdateUserRequest } from "@/shared/types/user.types";
+
+import { http } from "./http";
 
 /**
  * User API endpoints

@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { homeApi, type IMealEntry } from "../api";
+import { homeApi } from "../api";
+import type { IMealEntry } from "../types";
 
 export interface UseMealEntriesResult {
   entries: IMealEntry[];

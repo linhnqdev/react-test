@@ -1,6 +1,13 @@
-import type { ColumnCategory, IColumnItem } from "@/api/endpoints/mock.endpoints";
+// Domain types for columns feature
+export type ColumnCategory = "recommended" | "diet" | "beauty" | "health";
 
-// TODO: Khi tách hoàn toàn mock khỏi domain, định nghĩa lại type thuần ở đây
-// và để mock.endpoints chỉ sử dụng lại các type này.
-export type { ColumnCategory, IColumnItem };
+export interface IColumnItem {
+  id: string;
+  category: ColumnCategory;
+  imageUrl: string;
+  date: string;
+  time: string;
+  title: string;
+  tags: string[];
+}
 
