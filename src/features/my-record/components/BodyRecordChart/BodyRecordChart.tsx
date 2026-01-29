@@ -76,7 +76,7 @@ export function BodyRecordChart() {
   }, [baseData, selectedPeriod]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="body-record">
       <div className={styles.header}>
         <h2 className={styles.title}>BODY RECORD</h2>
         <span className={styles.date}>{currentDate}</span>

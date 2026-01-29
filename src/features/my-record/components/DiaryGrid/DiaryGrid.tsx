@@ -50,7 +50,7 @@ export function DiaryGrid() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="diary">
       <h2 className={styles.title}>MY DIARY</h2>
       {isLoading ? (
         <div className={styles.loadingWrapper}>

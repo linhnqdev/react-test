@@ -48,7 +48,7 @@ export function ExerciseLog() {
   const currentDate = formattedToday;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="exercise">
       <div className={styles.header}>
         <h2 className={styles.title}>MY EXERCISE</h2>
         <span className={styles.date}>{currentDate}</span>
